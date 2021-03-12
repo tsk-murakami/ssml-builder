@@ -1,0 +1,49 @@
+{
+  "name": "ssml-builder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "compile": "tsc",
+    "test": "jest",
+    "clean": "rm -rf ./dist",
+    "prepublish": "npm run test && npm run clean && npm run compile"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsk-murakami/ssml-builder.git"
+  },
+  "author": "tasukumurakami",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tsk-murakami/ssml-builder/issues"
+  },
+  "homepage": "https://github.com/tsk-murakami/ssml-builder#readme",
+  "devDependencies": {
+    "@types/jest": "^26.0.20",
+    "jest": "^26.6.3",
+    "ts-jest": "^26.5.3",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.3"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "globals": {
+      "ts-jest": {
+        "tsconfig": "tsconfig.json"
+      }
+    },
+    "testMatch": [
+      "**/tests/**/*.test.ts"
+    ]
+  }
+}
