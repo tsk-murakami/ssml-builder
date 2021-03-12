@@ -53,7 +53,7 @@ Wrap tag( sentence, paragraph... ) needs to explicitly call `up()` when closing 
 
 | Name | Wrap tag? |Description |
 | ---- | ---- | ---- |
-| raw | No | You can add text and insert custom tags.　|
+| raw | No | You can add text and insert custom tags. `useEscape` is default `true`.　|
 | sayAs | No |Insert the `say-as` tag. |
 | break | No |Insert the `break` tag. |
 | sub | No |Insert the `sub` tag. |
@@ -95,6 +95,19 @@ interface IProsody {
 };
 ```
 
+### Escape
+Applies to all `word` values of the above API parameters and when `useEscape` of API:`raw` is `true`.
+
+Therefore, if you use custom elements in raw, `useEscape` should be set to `false`.
+
+```ts
+/* Escape processing　*/
+escapedLines = escapedLines.replace(/&/g, '&amp;');
+escapedLines = escapedLines.replace(/"/g, '&quot;');escapedLines = escapedLines.replace(/</g, '&lt;');
+escapedLines = escapedLines.replace(/>/g, '&gt;');
+```
+
+
 ## Feature
 - [ ] Corresponding to commonly used tag.
 - [ ] Support for additional Google Text-to-Speech features
@@ -102,6 +115,6 @@ interface IProsody {
 
 ## Licence
 
-[MIT](https://github.com/tsk-murakami/ssml-builder/blob/master/LICENCE)
+[MIT](https://github.com/tsk-murakami/ssml-builder/blob/main/LICENSE)
 
 
