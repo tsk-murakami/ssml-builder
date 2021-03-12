@@ -19,10 +19,10 @@ interface ISsmlBuilder {
 export class Builder implements ISsmlBuilder {
     private _option: interfaces.IOption;
     protected _elements: string[] = [];
-    constructor( option?: interfaces.IPartialOption ){
+    constructor( /*option?: interfaces.IPartialOption*/ ){
         this._option = {
             ...DEFAULT_OPTION,
-            ...option
+            //...option
         }
     };
 

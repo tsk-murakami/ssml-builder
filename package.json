@@ -1,5 +1,5 @@
 {
-  "name": "ssml-builder",
+  "name": "ts-ssml-builder",
   "version": "1.0.0",
   "description": "",
   "main": "./dist/index.js",
