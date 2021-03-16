@@ -1,10 +1,10 @@
 
-export function attribute( option: { [word: string]: any } ){
+export function attribute( option: { [word: string]: any }, useKebabCase=false ){
     const attributes: string[] = []
     for( const [ key, val] of Object.entries(option) ){
         if( key === 'word' ) continue;
         if( val ){
-            const sureKey = kebabCase(key)
+            const sureKey = useKebabCase ? kebabCase(key) : key
             attributes.push(`${sureKey}=\"${val}\"`)
         }
     }

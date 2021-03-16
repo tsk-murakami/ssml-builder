@@ -6,7 +6,6 @@ export interface IOption {
 
 export type IPartialOption = Partial<Omit<IOption, 'version'>>;
 
-
 export type InterpretAs = 'characters' | 'spell-out' | 'cardinal' | 'number' | 'address'
     | 'ordinal' | 'digits' | 'fraction' | 'unit' | 'date' | 'time' | 'telephone' 
     | 'interjection' | 'expletive'
@@ -37,6 +36,8 @@ export interface IProsody {
     word: string;
     [ key: string ] : string;
 };
-export interface ISentence {
-    word?: string;
+
+export type EmphasisLevel = 'strong' | 'moderate' | 'none' | 'reduced'
+export interface IEmphasis {
+    level: EmphasisLevel;
 };

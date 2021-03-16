@@ -40,10 +40,12 @@ interface ISsmlBuilder {
     raw( value: string, useEscape?: boolean ): Builder;
     sayAs( option: interfaces.ISayAs ): Builder;
     break( option?: Partial<interfaces.IBreak> ): Builder;
-    sub(option: interfaces.ISub): Builder;
-    audio(option: interfaces.IAudio ): Builder; // Wrap tag
+    sub( option: interfaces.ISub ): Builder;
+    audio( option: interfaces.IAudio ): Builder; // Wrap tag
     sentence(): Builder; // Wrap tag
     paragraph(): Builder; // Wrap tag
+    prosody( option: interfaces.IProsody ): Builder;
+    emphasis( option?: interfaces.IEmphasis ): Builder; // Wrap tag
     up(): Builder;
 };
 
@@ -60,8 +62,11 @@ Wrap tag( sentence, paragraph... ) needs to explicitly call `up()` when closing 
 | audio | Yes | Insert the `audio` tag. |
 | sentence | Yes | Insert the `s` tag. |
 | paragraph | Yes | Insert the `p` tag. |
+| prosody | No | Insert the `prosody` tag. |
+| emphasis | Yes | Insert the `emphasis` tag. |
 
 ### API Params
+The `audio` and `prosody` can be set to any attribute.
 ```ts
 type InterpretAs = 'characters' | 'spell-out' | 'cardinal' | 'number' | 'address'
     | 'ordinal' | 'digits' | 'fraction' | 'unit' | 'date' | 'time' | 'telephone' 
@@ -93,6 +98,10 @@ interface IProsody {
     word: string;
     [ key: string ] : string;
 };
+export type EmphasisLevel = 'strong' | 'moderate' | 'none' | 'reduced'
+export interface IEmphasis {
+    level: EmphasisLevel;
+};
 ```
 
 ### Escape
@@ -103,15 +112,18 @@ Therefore, if you use custom elements in raw, `useEscape` should be set to `fals
 ```ts
 /* Escape processing　*/
 escapedLines = escapedLines.replace(/&/g, '&amp;');
-escapedLines = escapedLines.replace(/"/g, '&quot;');escapedLines = escapedLines.replace(/</g, '&lt;');
+escapedLines = escapedLines.replace(/"/g, '&quot;');
+escapedLines = escapedLines.replace(/</g, '&lt;');
 escapedLines = escapedLines.replace(/>/g, '&gt;');
 ```
 
 
 ## Feature
-- [ ] Corresponding to commonly used tag.
-- [ ] Support for additional Google Text-to-Speech features
-- [ ] Support for additional Amazon Alexa features
+<ul>
+<li><input type="checkbox">Corresponding to commonly used tag.</li>
+<li><input type="checkbox">Support for additional Google Text-to-Speech features.</li>
+<li><input type="checkbox">Support for additional Amazon Alexa features.</li>
+</ul>
 
 ## Licence
 

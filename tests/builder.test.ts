@@ -75,6 +75,17 @@ describe( 'wrap', () => {
             `<p ><say-as interpret-as=\"digits\">12345</say-as>paragraph</p>`
         ))
     } )
+    it( 'emphasis', () => {
+        const builder = new Builder();
+        const ssml = builder.emphasis({ level: 'moderate' })
+            .sayAs( { interpretAs: 'digits', word: '12345' } )
+            .raw("emphasis", true)
+            .up()
+            .ssml()
+        expect( ssml ).toEqual(makeSSML(
+            `<emphasis level="moderate"><say-as interpret-as=\"digits\">12345</say-as>emphasis</emphasis>`
+        ))
+    } )
 } )
 
 describe( 'multi wrap', () => {

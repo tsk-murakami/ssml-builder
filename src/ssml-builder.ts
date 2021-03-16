@@ -7,12 +7,14 @@ import * as utils from './utils';
 interface ISsmlBuilder {
     ssml(): string;
     raw( value: string, useEscape?: boolean ): Builder;
-    sayAs( option: interfaces.ISayAs ): Builder;
-    break( option?: Partial<interfaces.IBreak> ): Builder;
+    sayAs(option: interfaces.ISayAs ): Builder;
+    break(option?: Partial<interfaces.IBreak> ): Builder;
     sub(option: interfaces.ISub): Builder;
     audio(option: interfaces.IAudio ): Builder;
     sentence(): Builder;
     paragraph(): Builder;
+    prosody(option: interfaces.IProsody): Builder;
+    emphasis(option?: interfaces.IEmphasis): Builder;
     up(): Builder;
 };
 
@@ -34,7 +36,7 @@ export class Builder implements ISsmlBuilder {
         return this;
     };
     public sayAs( option: interfaces.ISayAs ): Builder{
-        this._elements.push(`<say-as ${utils.attribute(option)}>${utils.escape(option.word)}</say-as>`)
+        this._elements.push(`<say-as ${utils.attribute(option, true)}>${utils.escape(option.word)}</say-as>`)
         return this;
     };
     public break( option?: Partial<interfaces.IBreak> ): Builder{
@@ -65,6 +67,11 @@ export class Builder implements ISsmlBuilder {
         this._elements.push(`<prosody ${utils.attribute(option)}>${utils.escape(option.word)}</prosody>`)
         return this
     }
+    public emphasis(option?: interfaces.IEmphasis){
+        const wrap = new WrapBuilder(this._option, { tag: 'emphasis', attribute: option })
+        wrap.callback = this.__wrapUpCallback(this._elements.length)
+        return wrap
+    };
     public up(): Builder {
         return this
     }
